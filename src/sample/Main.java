@@ -93,7 +93,7 @@ public class Main extends Application {
        play.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
        @Override
        public void handle(MouseEvent e) {
-           scene_type = 1;
+           scene_type = 2;
 
            afficheStage();
 
@@ -121,6 +121,79 @@ public class Main extends Application {
        return scenee;
    }
 
+   public Scene SelectModePage()
+   {
+       Scene scenee = null;
+
+       String[] Modes = {"Humain contre IA","Humain contre Humain"};
+
+       GridPane Menus = new GridPane();
+
+       for(int i = 0;i< Modes.length; i++) {
+           int IndexGrid = i;
+           GridPane SubMenu = new GridPane();
+
+           Button SubButton = new Button(Modes[i]);
+
+           SubButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
+               @Override
+               public void handle(MouseEvent e) {
+
+                   if (IndexGrid == 0) {
+                       scene_type = 3;
+                   } else {
+                       scene_type = 1;
+                   }
+                   afficheStage();
+               }});
+
+           SubMenu.add(SubButton,4,6);
+           Menus.add(SubMenu,0,i,2,1);
+       }
+
+       Menus.setVgap(10);
+       Menus.setAlignment(Pos.CENTER);
+       scenee = new Scene(Menus, 300, 200);
+       return scenee;
+   }
+
+   public Scene SelectLevelPage()
+   {
+       Scene scenee = null;
+
+       String[] Levels = {"Débutant","Autonome","Avancé"};
+
+       GridPane Menus = new GridPane();
+
+       for(int i=0;i < Levels.length; i++) {
+
+           int level = i;
+           GridPane SubMenu = new GridPane();
+
+           Button SubButton = new Button(Levels[i]);
+
+           SubButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
+               @Override
+               public void handle(MouseEvent e) {
+
+                   type_joueur2 = level;
+
+                   scene_type =1;
+
+                   afficheStage();
+
+               }});
+
+           SubMenu.add(SubButton,4,6);
+           Menus.add(SubMenu,0,i,2,1);
+       }
+
+       Menus.setVgap(10);
+       Menus.setAlignment(Pos.CENTER);
+       scenee = new Scene(Menus, 300, 200);
+       return scenee;
+   }
+
    public void afficheStage()
    {
        //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
@@ -133,6 +206,12 @@ public class Main extends Application {
                break;
            case 1:
                scenee =  jouerPage();
+               break;
+           case 2:
+               scenee =  SelectModePage();
+               break;
+           case 3:
+               scenee =  SelectLevelPage();
                break;
        }
 
