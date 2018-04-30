@@ -1,8 +1,11 @@
 package sample;
 
 public class IA extends Joueur{
-
-    @Override
+	
+	public IA(String s, int t){
+		super(s,t);
+	}
+	
     void coup_jouer() {
 
     }

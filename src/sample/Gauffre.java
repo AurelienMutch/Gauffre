@@ -24,5 +24,12 @@ public class Gauffre {
 	public int get_val(int i, int j){
 		return this.table[i][j];
 	}
-
+	
+	public void transforme(int x, int y){
+		for (int i=x; i<hauteur;i++){
+			for (int j=y; j<largeur;j++){
+				this.table[i][j] = 2;
+			}
+		}
+	}
 }

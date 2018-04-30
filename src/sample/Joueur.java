@@ -1,10 +1,14 @@
 package sample;
 
 abstract class Joueur {
-
-    //renvoi le coup jouer par le joueur courrant
-     coup_jouer(Plateau p){}
-
+	public String name;
+	public int type;
+	
+	
+	public Joueur(String name, int type){
+		this.name = name;
+		this.type = type;
+	}
 
 
     //renvoie le temp a attendre par la machine pour simuler la reflexion de l'homme

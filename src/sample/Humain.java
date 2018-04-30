@@ -1,16 +1,12 @@
 package sample;
 
 public class Humain extends Joueur{
+	
+	
+	public Humain(String s, int t){
+		super(s,t);
+	}
 
-
-    @Override
-    void coup_jouer() {
-
-        x=getX onclickmousenvent();
-        y=getY onclickmousenvent();
-
-
-    }
 
 
     @Override
