@@ -9,7 +9,7 @@ public class IA extends Joueur{
 		this.difficulte=d;
 	}
 	
-    public Case coup_jouer(Plateau P) {
+    public Case coup_jouer(Gauffre P) {
     	switch(this.difficulte){
 	    	case 0: return coup_random(P);	// IA facile
 	    	case 1: if(coup_gagnant(P)!=null){	//IA moyen
@@ -43,7 +43,7 @@ public class IA extends Joueur{
     	}    	
     }
     
-    public Case coup_random(Plateau P){		// Renvoie une case libre choisie aléatoirement, ou la case posion si c'est la seule libre
+    public Case coup_random(Gauffre P){		// Renvoie une case libre choisie aléatoirement, ou la case posion si c'est la seule libre
     	ArrayList<Case>caseUtilisable = this.case_utilisable(P);
     	if(caseUtilisable.isEmpty()){
     		return new Case(0,0,null);
@@ -53,18 +53,18 @@ public class IA extends Joueur{
     	return caseUtilisable.get(c);
     }
 
-    public Case coup_gagnant(Plateau P){
+    public Case coup_gagnant(Gauffre P){
     	
     	// Cas evident: victoire en 1 trour
-    	if(P.plateau[0][1]==2 && P.plateau[1][0]!=2){	
+    	if(P.table[0][1]==2 && P.table[1][0]!=2){	
     		return new Case(1,0,null);
-    	}else if(P.plateau[1][0]==2 && P.plateau[0][1]!=2){
+    	}else if(P.table[1][0]==2 && P.table[0][1]!=2){
     		return new Case(0,1,null);
     		
         // Cas assez evident: victoire en 2 tour	    		
-    	}else if((P.plateau[0][2]==2 && P.plateau[0][1]!=2) && (P.plateau[3][0]==2 && P.plateau[2][0]!=2)){    	
+    	}else if((P.table[0][2]==2 && P.table[0][1]!=2) && (P.table[3][0]==2 && P.table[2][0]!=2)){    	
     		return new Case(2,0,null);
-    	}else if((P.plateau[2][0]==2 && P.plateau[1][0]!=2) && (P.plateau[0][3]==2 && P.plateau[0][3]!=2)){    		
+    	}else if((P.table[2][0]==2 && P.table[1][0]!=2) && (P.table[0][3]==2 && P.table[0][3]!=2)){    		
     		return new Case(0,2,null);
     		
         // Pas de coups gagnat evident    		
@@ -73,25 +73,25 @@ public class IA extends Joueur{
     	}
     }
     
-    public ArrayList<Case> coup_perdant(Plateau P){
+    public ArrayList<Case> coup_perdant(Gauffre P){
     	ArrayList<Case>  coupPerdant = new ArrayList<Case>();
     	coupPerdant.add(new Case(0,0,null));	// Le posion est toujours un coup perdant
-    	if(P.plateau[0][1]!=2 && P.plateau[1][0]!=2){	//  coup perdant evidant
+    	if(P.table[0][1]!=2 && P.table[1][0]!=2){	//  coup perdant evidant
     		coupPerdant.add(new Case(0,1,null));
     		coupPerdant.add(new Case(1,0,null));
-    	}else if((P.plateau[0][1]!=2 && P.plateau[0][2]==2) && P.plateau[3][0]!=2){	// Coup perdant en deux tour
+    	}else if((P.table[0][1]!=2 && P.table[0][2]==2) && P.table[3][0]!=2){	// Coup perdant en deux tour
     		coupPerdant.add(new Case(3,0,null));
-    	}else if((P.plateau[1][0]!=2 && P.plateau[2][0]==2) && P.plateau[0][3]!=2){
+    	}else if((P.table[1][0]!=2 && P.table[2][0]==2) && P.table[0][3]!=2){
     		coupPerdant.add(new Case(0,3,null));
     	}
     	return coupPerdant;
     }
     
-    public ArrayList<Case> case_utilisable(Plateau P){
+    public ArrayList<Case> case_utilisable(Gauffre P){	// La case est cliquable
     	ArrayList<Case> caseUtilisable = new ArrayList<Case>();
     	for(int i=0;i<P.largeur;i++){
     		for(int j=0;j<P.hauteur;j++){
-    			if(P.plateau[i][j]!=2){
+    			if(P.table[i][j]!=2){
     				caseUtilisable.add(new Case(i,j,null));
     			}
     		}
