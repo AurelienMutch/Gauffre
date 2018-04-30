@@ -1,9 +1,9 @@
 .button {
     -fx-text-fill: #FFFFFF;
+}
+.b-style1,.b-style2,.b-style3{
     -fx-min-width: 30px;
     -fx-max-width: 30px;
-    -fx-border-radius:100;
-    -fx-background-radiu:100;
 }
 .b-style1{
     -fx-background-color: seagreen;

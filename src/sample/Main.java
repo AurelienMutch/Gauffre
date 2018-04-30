@@ -14,13 +14,14 @@ import javafx.scene.Node;
 
 public class Main extends Application {
 
+    private static Stage MainStage;
 	private static int nb_case_x = 20;
 	private static int nb_case_y = 20;
 	private static int taille_case_long = 32;
 	private static int taille_case_larg = 29;
 
 	public int type_joueur2;
-	public int scene_type = 1;
+	public int scene_type = 0;
 	
 	
 	private static int taille_fenetre_x= nb_case_x*taille_case_long;
@@ -79,38 +80,70 @@ public class Main extends Application {
     		}
     	}
 	}
+
+   public Scene welcomePage()
+   {
+       Scene scenee = null;
+       GridPane menu = new GridPane();
+       GridPane menu1 = new GridPane();
+       GridPane menu2 = new GridPane();
+       Button play = new Button("Jouer");
+       Button sortir = new Button("quit");
+
+       play.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
+       @Override
+       public void handle(MouseEvent e) {
+           scene_type = 1;
+
+           afficheStage();
+
+       }});
+
+       menu1.setAlignment(Pos.TOP_CENTER);
+       menu1.setAlignment(Pos.BOTTOM_CENTER);
+       menu.setAlignment(Pos.CENTER);
+       menu1.add(play, 4, 6);
+       menu2.add(sortir, 4, 8);
+       menu.add(menu1, 0, 1);
+       menu.add(menu2, 1, 1);
+       scenee = new Scene(menu, 300, 200);
+       return scenee;
+   }
+
+   public Scene jouerPage()
+   {
+       Scene scenee = null;
+       GridPane gridpane = new GridPane();
+       gridpane.setHgap(2);
+       gridpane.setVgap(2);
+       remplir_gridpane(gridpane);
+       scenee = new Scene(gridpane, taille_fenetre_x, taille_fenetre_y);
+       return scenee;
+   }
+
+   public void afficheStage()
+   {
+       //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+       MainStage.setTitle("La Gauffre !!");
+       Scene scenee = null;
+
+       switch(scene_type) {
+           case 0:
+               scenee =  welcomePage();
+               break;
+           case 1:
+               scenee =  jouerPage();
+               break;
+       }
+
+       scenee.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+       MainStage.setScene(scenee);
+       MainStage.show();
+   }
 	
    public void start(Stage primaryStage) throws Exception{
-       	//Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("La Gauffre !!");
-        Scene scenee = null;
-        if(scene_type ==0){
-        	GridPane menu = new GridPane();
-        	GridPane menu1 = new GridPane();
-        	GridPane menu2 = new GridPane();
-        	Button play = new Button("Jouer");
-        	Button sortir = new Button("quit");
-        	menu1.setAlignment(Pos.TOP_CENTER);
-        	menu1.setAlignment(Pos.BOTTOM_CENTER);
-        	menu.setAlignment(Pos.CENTER);
-        	menu1.add(play, 4, 6);
-        	menu2.add(sortir, 4, 8);
-        	menu.add(menu1, 0, 1);
-        	menu.add(menu2, 1, 1);
-        	scenee = new Scene(menu, 300, 200);
-        	primaryStage.setScene(scenee);
-            primaryStage.show();
-        	
-        }
-        else if (scene_type == 1){
-        	GridPane gridpane = new GridPane();
-            gridpane.setHgap(2);
-            gridpane.setVgap(2);
-        	remplir_gridpane(gridpane);
-        	scenee = new Scene(gridpane, taille_fenetre_x, taille_fenetre_y);
-        }
-        scenee.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-        primaryStage.setScene(scenee);
-        primaryStage.show();
+        MainStage = primaryStage;
+
+       afficheStage();
     }
 }
