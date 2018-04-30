@@ -1,0 +1,16 @@
+.button {
+    -fx-text-fill: #FFFFFF;
+    -fx-min-width: 30px;
+    -fx-max-width: 30px;
+    -fx-border-radius:100;
+    -fx-background-radiu:100;
+}
+.b-style1{
+    -fx-background-color: seagreen;
+}
+.b-style2{
+    -fx-background-color: goldenrod;
+}
+.b-style3{
+    -fx-background-color: slategrey;
+}

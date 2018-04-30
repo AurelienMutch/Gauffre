@@ -16,9 +16,9 @@ public class Main extends Application {
 
 	private static int nb_case_x = 20;
 	private static int nb_case_y = 20;
-	private static int taille_case_long = 50;
-	private static int taille_case_larg = 30;
-	
+	private static int taille_case_long = 32;
+	private static int taille_case_larg = 29;
+
 	public int type_joueur2;
 	public int scene_type = 1;
 	
@@ -44,13 +44,16 @@ public class Main extends Application {
 		for (int i=0; i<nb_case_x;i++){
 			for(int j=0; j<nb_case_y;j++){
 				if(gauffrette.get_val(i, j) == 0){
-					grid[i][j]= new Case(i,j,"poisson");
+					grid[i][j]= new Case(i,j,"P");
+                    grid[i][j].get_b().getStyleClass().add("b-style1");
 				}
 				else if(gauffrette.get_val(i, j) == 1){
-					grid[i][j]= new Case(i,j,"Sain");
+					grid[i][j]= new Case(i,j,"S");
+                    grid[i][j].get_b().getStyleClass().add("b-style2");
 				}
 				else{
-					grid[i][j]= new Case(i,j,"pas bien");
+					grid[i][j]= new Case(i,j,"M");
+                    grid[i][j].get_b().getStyleClass().add("b-style3");
 				}
 			}
 		}
@@ -101,11 +104,12 @@ public class Main extends Application {
         }
         else if (scene_type == 1){
         	GridPane gridpane = new GridPane();
+            gridpane.setHgap(2);
+            gridpane.setVgap(2);
         	remplir_gridpane(gridpane);
-
-        	
         	scenee = new Scene(gridpane, taille_fenetre_x, taille_fenetre_y);
         }
+        scenee.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         primaryStage.setScene(scenee);
         primaryStage.show();
     }
