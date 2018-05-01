@@ -1,5 +1,8 @@
 .button {
     -fx-text-fill: #FFFFFF;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 50px;
+    -fx-background-color: #000000;
 }
 .b-style1,.b-style2,.b-style3{
     -fx-min-width: 30px;
