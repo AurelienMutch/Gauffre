@@ -98,6 +98,12 @@ public class Main extends Application {
            afficheStage();
 
        }});
+	   
+       sortir.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
+       @Override
+       public void handle(MouseEvent e) {
+           MainStage.close();
+       }});
 
        menu1.setAlignment(Pos.TOP_CENTER);
        menu1.setAlignment(Pos.BOTTOM_CENTER);
